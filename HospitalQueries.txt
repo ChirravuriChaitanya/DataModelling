@@ -1,0 +1,81 @@
+--- Patient
+
+CREATE TABLE Patient (
+    PatientId SERIAL PRIMARY KEY,
+    PatientName VARCHAR(255) NOT NULL,
+    JoinDate DATE,
+    LeaveDate DATE,
+    PatientUnit VARCHAR(50),
+	);
+
+
+--- Doctor
+
+CREATE TABLE Doctor (
+    DoctorID SERIAL PRIMARY KEY,
+    DoctorName VARCHAR(255) NOT NULL,
+    Specialty VARCHAR(100)
+);
+
+
+
+--- Pharmacy
+
+CREATE TABLE Pharmacy (
+    PrescriptionID SERIAL PRIMARY KEY,
+    PatientId INT,
+    PrescriptionDate DATE,
+    Medication VARCHAR(100),
+    Quantity INT,
+	DoctorID INT,
+    FOREIGN KEY (PatientId) REFERENCES Patient(PatientId),
+	FOREIGN KEY (DoctorId) REFERENCES Doctor(DoctorID)
+);
+
+
+--- Populating values
+
+INSERT INTO Patient (PatientName, JoinDate, LeaveDate, PatientUnit, DoctorID)
+VALUES
+    ('John Smith', '2023-01-15', '2023-02-28', 'Cardiology', 1),
+    ('Alice Johnson', '2023-02-03', NULL, 'Pediatrics', 2),
+    ('Michael Brown', '2023-03-20', NULL, 'Orthopedics', 3),
+    ('Sarah Davis', '2023-04-10', '2023-05-25', 'Neurology', 4),
+    ('Robert Wilson', '2023-05-05', NULL, 'Oncology', 2),
+    ('Emily Lee', '2023-06-15', '2023-07-10', 'Gastroenterology', 3),
+    ('David Martinez', '2023-07-01', NULL, 'Cardiology', 1),
+    ('Sophia Perez', '2023-08-22', NULL, 'Pediatrics', 2),
+    ('James Taylor', '2023-09-12', '2023-10-30', 'Orthopedics', 3),
+    ('Olivia Anderson', '2023-10-05', NULL, 'Neurology', 4);
+
+
+---
+INSERT INTO Doctor (DoctorName, Specialty)
+VALUES
+    ('Dr. Smith', 'Cardiologist'),
+    ('Dr. Johnson', 'Pediatrician'),
+    ('Dr. Brown', 'Orthopedic Surgeon'),
+    ('Dr. Davis', 'Neurologist');
+
+---
+
+INSERT INTO Pharmacy (PatientId, PrescriptionDate, Medication, Quantity,DoctorID)
+VALUES
+    (1, '2023-01-20', 'Aspirin', 30,1),
+    (2, '2023-02-10', 'Cough Syrup', 1,2),
+    (3, '2023-03-25', 'Painkiller', 60,3),
+    (4, '2023-04-15', 'Antidepressant', 90,1),
+    (5, '2023-05-10', 'Chemotherapy', 5,2),
+    (6, '2023-06-20', 'Antacid', 120,1),
+    (7, '2023-07-05', 'Statins', 30,2),
+    (8, '2023-08-25', 'Vitamin C', 60,2),
+    (9, '2023-09-15', 'Anti-inflammatory', 45,1),
+    (10, '2023-10-10', 'Antibiotic', 14,3);
+
+
+
+
+
+
+
+
