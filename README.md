@@ -1,6 +1,7 @@
 # DataModelling
-Building Data Model of Hospital Database
+This project involves the analysis of the dvdrental dataset available at the PostgreSQL website, downloading and loading the data to postgreSQL.
 
+Post that we use psycopg2 to connect python to postgreSQL and re-design the data model into STAR Schema and make the data ready to load into the data warehouse/staging area/.
 
 -----
 -> Select a Dataset
